@@ -4,3 +4,4 @@ r_stonks/db.sqlite3
 r_stonks/stonks/migrations/
 r_stonks/stonks/__pycache__/
 r_stonks/r_stonks/__pycache__/
+.DS_Store
