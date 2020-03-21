@@ -7,7 +7,7 @@ def index(request):
 
     portfolio = Portfolio.objects.get(pk=1)
 
-    user_request_1 = "$BUY AAPL X4$"
+    user_request_1 = "$BUY MSFT X10$"
     holdings_quanity = 0
 
     def is_valid_request(user_request):
@@ -35,28 +35,31 @@ def index(request):
 
     # stock = yf.Ticker(ticker)
     # closing_price = stock.history(period="today")['Close'][0]
-    closing_price = 120
+    closing_price = 184
     valuation = volume * closing_price
 
     if action.upper() == "$BUY":
-        if cash_balance - valuation > 0:
-            holdings_quanity += volume
-            cash_balance -= valuation
+        if portfolio.cash - valuation > 0:
+            if ticker in portfolio.holdings:
+                portfolio.holdings[ticker][0] = closing_price
+                portfolio.holdings[ticker][1] += volume
+            else:
+                portfolio.holdings[ticker] = [closing_price, volume]
+            portfolio.cash -= valuation
         else:
             print("You don't have enough cash for that purchase, moving on to the next order.")
-
-    elif action.upper() == "$SELL":
-        if holdings_quanity >= volume:
-            holdings_quanity -= volume
-            cash_balance += valuation
-
-    print("Cash balance is now:", cash_balance)
-    print("You own these many shares:", holdings_quanity)
+        portfolio.save()
+    # elif action.upper() == "$SELL":
+    #     if holdings_quanity >= volume:
+    #         holdings_quanity -= volume
+    #         cash_balance += valuation
 
 
     print("Cash balance: ", portfolio.cash)
     print("--------------------------------")
     if portfolio.holdings == {}:
         print("You have no holdings right now.")
+    else:
+        print(portfolio.holdings)
 
     return HttpResponse("Check the terminal")
