@@ -22,23 +22,16 @@ def index(request):
         user_requests.append(UserRequest(user_message))
 
     for user_request in user_requests:
-        if user_request.action == "$BUY":
-            portfolio.buy_stock(user_request)
-        elif user_request.action == "$SELL":
-            portfolio.sell_stock(user_request)
-
-
-
-
-    #
-    # user_message = "$SELL COKE X200$"
-    #
-    # user_request = UserRequest(user_message)
-
+        try:
+            if user_request.action == "$BUY":
+                portfolio.buy_stock(user_request)
+            elif user_request.action == "$SELL":
+                portfolio.sell_stock(user_request)
+        except AttributeError as err:
+            pass
 
     # stock = yf.Ticker(ticker)
     # closing_price = stock.history(period="today")['Close'][0]
-
 
 
     print("Cash balance: ", portfolio.cash)
