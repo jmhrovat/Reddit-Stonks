@@ -20,7 +20,7 @@ class UserRequest():
                 parameters = self.user_message.split()
                 self.action = parameters[0].upper()
                 self.ticker = parameters[1].upper()
-                self.quantity = int(parameters[2][1:-1])
+                self.volume = int(parameters[2][1:-1])
             else:
                 raise ValueError
         except ValueError:
