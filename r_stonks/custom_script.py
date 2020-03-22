@@ -64,19 +64,14 @@ def validate_tickers(ticker_list):
             ticker_list.remove(ticker)
     return list(dict.fromkeys(ticker_list))
 
-# submission = reddit.submission(url='https://www.reddit.com/r/test/comments/fl3jle/test_post/')
+submission = reddit.submission(url='https://www.reddit.com/r/test/comments/fl3jle/test_post/')
 
 
 # stock = yf.Ticker("AAPL")
 #
 #
 # closing_price = stock.history(period="today")['Close'][0]
-#
-# purchase_total = closing_price * 4
-#
-# portfolio = portfolio - purchase_total
-#
-# print(portfolio)
+
 
 
 # for top_level_comment in submission.comments:

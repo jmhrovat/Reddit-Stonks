@@ -1,5 +1,3 @@
-
-
 class UserRequest():
 
     def __init__(self, user_message):
