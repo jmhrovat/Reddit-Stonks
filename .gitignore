@@ -5,3 +5,4 @@ r_stonks/stonks/migrations/
 r_stonks/stonks/__pycache__/
 r_stonks/r_stonks/__pycache__/
 
+r_stonks/modules/stonks_bot.py
