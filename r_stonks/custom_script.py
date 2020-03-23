@@ -44,28 +44,6 @@ Edits lose participation privilge. this is to reduce shadow edit trolling.
 
 """
 
-portfolio = 1000000
-
-
-print("Welcome to Day 1 of trading. As of today, you have a cash fund of %d" % portfolio)
-
-
-reddit = praw.Reddit(
-    client_id = '0ZDtBKGJodJs9g',
-    client_secret = 'uTU2m6RYJB5B1PXAvmPPEtrRREI',
-    username = 'stonks_mod',
-    password = 'r95!eQQKBq7vsE.',
-    user_agent = 'stonks_bot'
-)
-
-def validate_tickers(ticker_list):
-    for ticker in ticker_list:
-        if len(ticker) > 6 or not ticker.isalnum():
-            ticker_list.remove(ticker)
-    return list(dict.fromkeys(ticker_list))
-
-submission = reddit.submission(url='https://www.reddit.com/r/test/comments/fl3jle/test_post/')
-
 
 # stock = yf.Ticker("AAPL")
 #

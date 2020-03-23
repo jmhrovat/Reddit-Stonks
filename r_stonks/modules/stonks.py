@@ -17,7 +17,6 @@ class UserRequest():
                 and parameters[2][0].upper() == "X"
                 and parameters[2][-1] == "$"):
                     return True
-
             else:
                 return False
 

@@ -13,6 +13,7 @@ def index(request):
 
     bot = get_stonks_bot()
 
+    # Migrate url as attribute to Portfolio model
     submission = bot.submission(url='https://www.reddit.com/r/test/comments/fl3jle/test_post/')
 
     user_requests = []
