@@ -3,31 +3,77 @@ from modules.stonks import *
 from modules.stonks_bot import *
 from stonks.models import *
 import yfinance as yf
-from datetime import date
+import datetime
 
 
 def index(request):
 
-    portfolio = Portfolio.objects.get(pk=1)
+    today = datetime.date.today()
+    yesterday = today - datetime.timedelta(days = 1)
 
-    # portfolio.reset()
+    # Create today's portfolio at 2:00pm
+    # Set opening values equal to yesterday's portfolio
+    open_portfolio = Portfolio.objects.get(date="2020-03-23")
+
+    close_portfolio = Portfolio.objects.get(date="2020-03-24")
+
+    request = UserRequest("$BUY COKE X30$")
+
+
+    # close_portfolio.buy_stock(request)
+
+    print("Open:")
+    print(open_portfolio.holdings)
+    print("Close:")
+    print(close_portfolio.holdings)
+
 
     bot = get_stonks_bot()
 
     # Migrate url as attribute to Portfolio model
     post = bot.submission(url='https://www.reddit.com/r/test/comments/fl3jle/test_post/')
 
-    today = date.today()
-    print(today.strftime("%m/%d/%Y"))
-    post_text = "Ticker| Price | Quantity\n:--|:--:|--:\nAAPL| 100 | 50"
+
+
+    # def get_formatted_holdings_table(holdings):
+    #     #
+    #     # holdings_substring = "Ticker | Price | Quantity | Value\n:--|--:|--:|--:\n"
+    #     #
+    #     # for stock in holdings:
+    #     #     holdings_substring += ( stock
+    #     #         + " | " + str(holdings[stock]["Price"])
+    #     #         + " | " + str(holdings[stock]["Volume"])
+    #     #         + " | " + str((holdings[stock]["Price"] * holdings[stock]["Volume"])) + "\n"
+    #     #     )
+    #     # return holdings_substring
 
 
 
+    # print(portfolio.get_formatted_holdings_table())
 
 
-    post.edit(post_text)
+    # today = str(date.today().strftime("%m/%d/%Y"))
 
-    print("Edit")
+    # post_text = ""
+    # post_text += (
+    #     "#" + " Portfolio\n" +
+    #     "---\n"
+    #     "View Chart\n\n" +
+    #     "**Portfolio @ Open**\n" +
+    #     portfolio.get_formatted_holdings_table() +
+    #     "**Portfolio @ Close**\n" +
+    #     portfolio.get_formatted_holdings_table() +
+    #     "**End of Day Change:\n" +
+    #     "View change to date by:" +
+    #     "**Today's Transactions**" +
+    #     "/u/**** sold 7 shares of stock" +
+    #     "/u/******* bought 8 stock"
+    #
+    #     )
+
+    # post.edit(post_text)
+    # print(post_text)
+
 
     # user_requests = []
 
