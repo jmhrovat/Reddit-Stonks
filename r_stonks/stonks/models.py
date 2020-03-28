@@ -13,6 +13,7 @@ class Portfolio(models.Model):
         self.cash = 100000
         self.holdings = {}
 
+    # Combine buy and sell into a single conditional called 'ProcessOrder'
     def buy_stock(self, User_Request):
         valuation = 600
         closing_price = 100
@@ -51,3 +52,22 @@ class Portfolio(models.Model):
         else:
             print("You don't have that stock")
         self.save()
+
+    def get_formatted_holdings_table(self):
+
+        holdings_substring = "Ticker | Price | Quantity | Value\n:--|--:|--:|--:\n"
+        total_valuation = 0
+        for stock in self.holdings:
+
+            valuation = self.holdings[stock]["Price"] * self.holdings[stock]["Volume"]
+
+            holdings_substring += ( stock
+                + " | " + str(self.holdings[stock]["Price"])
+                + " | " + str(self.holdings[stock]["Volume"])
+                + " | " + str(valuation) + "\n"
+            )
+
+            total_valuation += valuation
+
+        holdings_substring += "**TOTAL** | | | **" + str(total_valuation) + "**\n"
+        return holdings_substring
