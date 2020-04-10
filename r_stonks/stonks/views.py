@@ -11,27 +11,29 @@ def index(request):
     today = datetime.date.today()
     yesterday = today - datetime.timedelta(days = 1)
 
+    return HttpResponse("Check the terminal")
+
     # Create today's portfolio at 2:00pm
     # Set opening values equal to yesterday's portfolio
-    open_portfolio = Portfolio.objects.get(date="2020-03-23")
-
-    close_portfolio = Portfolio.objects.get(date="2020-03-24")
-
-    request = UserRequest("$BUY COKE X30$")
+    # open_portfolio = Portfolio.objects.get(date="2020-03-23")
+    #
+    # close_portfolio = Portfolio.objects.get(date="2020-03-24")
+    #
+    # request = UserRequest("$BUY COKE X30$")
 
 
     # close_portfolio.buy_stock(request)
 
-    print("Open:")
-    print(open_portfolio.holdings)
-    print("Close:")
-    print(close_portfolio.holdings)
+    # print("Open:")
+    # print(open_portfolio.holdings)
+    # print("Close:")
+    # print(close_portfolio.holdings)
 
 
-    bot = get_stonks_bot()
+    # bot = get_stonks_bot()
 
     # Migrate url as attribute to Portfolio model
-    post = bot.submission(url='https://www.reddit.com/r/test/comments/fl3jle/test_post/')
+    # post = bot.submission(url='https://www.reddit.com/r/test/comments/fl3jle/test_post/')
 
 
 
@@ -105,6 +107,3 @@ def index(request):
     # print("You have the following stock:")
     # for key, value in portfolio.holdings:
     #     print('You own {} shares of {}, '.format(key, value))
-
-
-    return HttpResponse("Check the terminal")
